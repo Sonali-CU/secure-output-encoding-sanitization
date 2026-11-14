@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card">
+    <h2>Q10: Safely Handling Untrusted Data in OS Commands</h2>
+    <p class="subtitle">Preventing OS Command Injection using <code>subprocess.run()</code> with argument lists and <code>shell=False</code>.</p>
+
+    <form method="POST" class="mt-4">
+        <div class="form-group">
+            <label>Filename Input (Try injecting: report.txt; whoami & dir):</label>
+            <input type="text" name="filename" class="form-input mono" value="{{ result.filename_received }}">
+        </div>
+        <button type="submit" class="btn btn-primary">Execute Safe File Processing</button>
+    </form>
+
+    <div class="results-box mt-4">
+        <h3>Subprocess Execution Telemetry</h3>
+        <div class="comp-box">
+            <span class="label">Filename Argument Passed to Subprocess:</span>
+            <code class="code-block text-success">{{ result.filename_received }}</code>
+        </div>
+        <div class="comp-box mt-2">
+            <span class="label">Process Standard Output:</span>
+            <pre><code>{{ result.stdout }}</code></pre>
+        </div>
+
+        <div class="status-box pass mt-3">
+            <strong>🛡️ COMMAND INJECTION NEUTRALIZED:</strong>
+            <p>Because <code>shell=False</code> was specified, the operating system bypasses the command interpreter (cmd.exe / bash). Metacharacters like <code>;</code>, <code>&</code>, and <code>|</code> are treated as literal characters within the filename string rather than command chaining operators!</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

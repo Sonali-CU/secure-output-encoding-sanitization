@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card">
+    <h2>Q7: Safely Handling Untrusted Data in SQL Contexts</h2>
+    <p class="subtitle">Defeating SQL Injection (<code>' OR '1'='1</code>) using parameterized queries with SQLite placeholders.</p>
+
+    <form method="POST" class="mt-4">
+        <div class="form-grid">
+            <div class="form-group">
+                <label>Username Input:</label>
+                <input type="text" name="username" class="form-input mono" value="{{ username }}">
+            </div>
+            <div class="form-group">
+                <label>Password Input:</label>
+                <input type="text" name="password" class="form-input mono" value="{{ password }}">
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary mt-3">Execute SQL Authentication Queries</button>
+    </form>
+
+    <div class="results-box mt-4">
+        <div class="comparison-grid">
+            <div class="comp-card" style="border-color: #ef4444;">
+                <h4 class="text-danger">❌ Vulnerable Concatenation Query</h4>
+                <pre><code>{{ vuln_query }}</code></pre>
+                <p>Records Returned: <strong>{{ vuln_records|length }}</strong></p>
+                {% if vuln_records %}
+                    <div class="status-box fail">
+                        <strong>⚠️ CRITICAL BYPASS:</strong> SQL injection succeeded! All user accounts returned without valid password.
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="comp-card" style="border-color: #10b981;">
+                <h4 class="text-success">✅ Secure Parameterized Query</h4>
+                <pre><code>{{ sec_query }}
+Params: ({{ username|tojson }}, {{ password|tojson }})</code></pre>
+                <p>Records Returned: <strong>{{ sec_records|length }}</strong></p>
+                <div class="status-box pass">
+                    <strong>🛡️ ATTACK DEFENSE VERIFIED:</strong> Zero unauthorized records returned. Database engine treats input strictly as literal string values.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

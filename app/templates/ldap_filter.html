@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card">
+    <h2>Q9: Safely Handling Untrusted Data in LDAP Contexts (RFC 4515)</h2>
+    <p class="subtitle">Escaping LDAP search filter metacharacters (*, (, ), \, null bytes) using <code>ldap3.utils.conv.escape_filter_chars</code>.</p>
+
+    <form method="POST" class="mt-4">
+        <div class="form-group">
+            <label>Username Input (Test metacharacters: admin*)(|(uid=*))):</label>
+            <input type="text" name="username" class="form-input mono" value="{{ result.raw_username }}">
+        </div>
+        <button type="submit" class="btn btn-primary">Construct LDAP Search Filter</button>
+    </form>
+
+    <div class="results-box mt-4">
+        <h3>Filter Construction Comparison</h3>
+        <div class="comp-box">
+            <span class="label">Raw Untrusted Username:</span>
+            <code class="code-block text-danger">{{ result.raw_username }}</code>
+        </div>
+        <div class="comp-box mt-2">
+            <span class="label">RFC 4515 Escaped Username:</span>
+            <code class="code-block text-success">{{ result.escaped_username }}</code>
+        </div>
+
+        <div class="comparison-grid mt-3">
+            <div class="comp-card" style="border-color: #ef4444;">
+                <h4 class="text-danger">❌ Vulnerable LDAP Filter:</h4>
+                <pre><code>{{ result.vulnerable_filter }}</code></pre>
+                <p class="small text-danger">Attacker breaks out of filter logic using parentheses and wildcards!</p>
+            </div>
+            <div class="comp-card" style="border-color: #10b981;">
+                <h4 class="text-success">✅ Secure Escaped Filter:</h4>
+                <pre><code>{{ result.secure_filter }}</code></pre>
+                <p class="small text-success">Metacharacters escaped to hexadecimal bytes (e.g. * &rarr; \2a, ( &rarr; \28).</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

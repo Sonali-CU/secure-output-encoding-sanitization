@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card">
+    <h2>Q8: Safely Handling Untrusted Data in XML Contexts (defusedxml)</h2>
+    <p class="subtitle">Preventing XML External Entity (XXE) attacks using the <code>defusedxml</code> library.</p>
+
+    <form method="POST" class="mt-4">
+        <div class="form-group">
+            <label>Untrusted XML Data with External Entity Declaration:</label>
+            <textarea name="xml_data" class="form-input mono" rows="8">{{ xml_data }}</textarea>
+        </div>
+        <button type="submit" class="btn btn-primary mt-3">Parse XML Safely</button>
+    </form>
+
+    <div class="results-box mt-4">
+        <h3>Parser Execution Telemetry</h3>
+        {% if result.status == 'BLOCKED' %}
+            <div class="status-box pass">
+                <strong>🛡️ XXE ATTACK NEUTRALIZED:</strong>
+                <p>{{ result.message }}</p>
+                <p class="small text-muted">defusedxml intercepted the DTD &lt;!ENTITY&gt; declaration and blocked entity expansion, preventing sensitive file disclosure.</p>
+            </div>
+        {% else %}
+            <div class="status-box info">
+                <strong>Status:</strong> {{ result.message }}
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

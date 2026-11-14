@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="dashboard-hero">
+    <h1>🛡️ Secure Output Encoding & Input Sanitization Architecture</h1>
+    <p class="subtitle">Complete implementation of defense-in-depth output encoding and input sanitization across 10 security contexts.</p>
+    
+    <div class="hero-stats">
+        <div class="stat-box">
+            <span class="stat-val">10 / 10</span>
+            <span class="stat-lbl">Defensive Modules</span>
+        </div>
+        <div class="stat-box">
+            <span class="stat-val">100%</span>
+            <span class="stat-lbl">Automated Test Pass</span>
+        </div>
+        <div class="stat-box">
+            <span class="stat-val">OWASP</span>
+            <span class="stat-lbl">A03:2021 Compliant</span>
+        </div>
+    </div>
+</div>
+
+<div class="modules-grid">
+    <div class="card module-card">
+        <div class="card-badge">Q1 & Q4</div>
+        <h3>HTML Entity Encoding</h3>
+        <p>Uses Python's standard <code>html.escape()</code> to safely neutralize HTML metacharacters and script injection payloads.</p>
+        <a href="{{ url_for('main.html_encoding') }}" class="btn btn-primary">Open Module &rarr;</a>
+    </div>
+
+    <div class="card module-card">
+        <div class="card-badge">Q2</div>
+        <h3>Context-Specific Output Encoding</h3>
+        <p>Demonstrates why output encoding must strictly match the sink context: HTML Body, JavaScript String, and URL Query.</p>
+        <a href="{{ url_for('main.context_encoding') }}" class="btn btn-primary">Open Module &rarr;</a>
+    </div>
+
+    <div class="card module-card">
+        <div class="card-badge">Q3</div>
+        <h3>Untrusted Feedback Sanitization</h3>
+        <p>Live user feedback portal sanitizing untrusted inputs against Stored Cross-Site Scripting (XSS) attacks.</p>
+        <a href="{{ url_for('main.feedback') }}" class="btn btn-primary">Open Module &rarr;</a>
+    </div>
+
+    <div class="card module-card">
+        <div class="card-badge">Q5</div>
+        <h3>JavaScript JSON Serialization</h3>
+        <p>Employs <code>json.dumps()</code> rather than raw string concatenation to safely display user data inside script blocks.</p>
+        <a href="{{ url_for('main.js_welcome') }}" class="btn btn-primary">Open Module &rarr;</a>
+    </div>
+
+    <div class="card module-card">
+        <div class="card-badge">Q6</div>
+        <h3>URL Parameter Encoding</h3>
+        <p>Percent-encodes query parameters using <code>urllib.parse.quote()</code> and <code>urlencode()</code> handling spaces, &, =, and ?.</p>
+        <a href="{{ url_for('main.search_url') }}" class="btn btn-primary">Open Module &rarr;</a>
+    </div>
+
+    <div class="card module-card">
+        <div class="card-badge">Q7</div>
+        <h3>Parameterized SQL Queries</h3>
+        <p>SQLite parameterization with <code>?</code> placeholders completely defeating <code>' OR '1'='1</code> SQL injection bypass attempts.</p>
+        <a href="{{ url_for('main.sql_auth') }}" class="btn btn-primary">Open Module &rarr;</a>
+    </div>
+
+    <div class="card module-card">
+        <div class="card-badge">Q8</div>
+        <h3>Safe XML Parsing (XXE Defense)</h3>
+        <p>Utilizes <code>defusedxml.ElementTree</code> to parse XML while blocking XML External Entity (XXE) expansion attacks.</p>
+        <a href="{{ url_for('main.xml_parser') }}" class="btn btn-primary">Open Module &rarr;</a>
+    </div>
+
+    <div class="card module-card">
+        <div class="card-badge">Q9</div>
+        <h3>LDAP Search Filter Escaping</h3>
+        <p>Escapes untrusted characters (*, (, ), \, null bytes) per RFC 4515 using <code>ldap3.utils.conv.escape_filter_chars</code>.</p>
+        <a href="{{ url_for('main.ldap_filter') }}" class="btn btn-primary">Open Module &rarr;</a>
+    </div>
+
+    <div class="card module-card">
+        <div class="card-badge">Q10</div>
+        <h3>Safe OS Command Execution</h3>
+        <p>Executes OS processes using <code>subprocess.run(..., shell=False)</code> with argument lists, preventing shell metacharacter injection.</p>
+        <a href="{{ url_for('main.cmd_exec') }}" class="btn btn-primary">Open Module &rarr;</a>
+    </div>
+</div>
+{% endblock %}

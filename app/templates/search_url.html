@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card">
+    <h2>Q6: URL Parameter Encoding (urllib.parse)</h2>
+    <p class="subtitle">Safely percent-encoding search keywords containing spaces, ampersands (&), equal signs (=), question marks (?), and unicode characters.</p>
+
+    <form method="POST" class="mt-4">
+        <div class="form-group">
+            <label>Search Keyword:</label>
+            <input type="text" name="query" class="form-input mono" value="{{ result.raw_keyword }}">
+        </div>
+        <button type="submit" class="btn btn-primary">Generate Encoded URL</button>
+    </form>
+
+    <div class="results-box mt-4">
+        <h3>URL Encoding Results</h3>
+        <div class="comp-box">
+            <span class="label">Raw Keyword:</span>
+            <code class="code-block text-danger">{{ result.raw_keyword }}</code>
+        </div>
+        <div class="comp-box mt-2">
+            <span class="label">Percent-Encoded Parameter (urllib.parse.quote):</span>
+            <code class="code-block text-success">{{ result.encoded_param }}</code>
+        </div>
+        <div class="comp-box mt-2">
+            <span class="label">Constructed Query String (urllib.parse.urlencode):</span>
+            <code class="code-block text-success">{{ result.query_string }}</code>
+        </div>
+
+        <div class="status-box pass mt-3">
+            <strong>✅ Link Integrity:</strong>
+            <p>Generated URL: <a href="{{ result.full_url }}" target="_blank" class="mono text-primary">{{ result.full_url }}</a></p>
+            <p class="small text-muted">Special characters like & and = are percent-encoded (%26, %3D) ensuring they are not misinterpreted by the web server as query parameter delimiters.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

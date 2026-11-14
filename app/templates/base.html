@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title or 'Secure Output Encoding & Input Sanitization Suite' }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="navbar">
+        <div class="nav-container">
+            <div class="brand">
+                <span class="shield-icon">🛡️</span>
+                <span class="brand-title">SecureEncoding<strong>Lab</strong></span>
+                <span class="badge badge-sec">OWASP Injection Defenses</span>
+            </div>
+            <nav class="nav-links">
+                <a href="{{ url_for('main.index') }}" class="nav-item">Dashboard</a>
+                <a href="{{ url_for('main.html_encoding') }}" class="nav-item">HTML (Q1/Q4)</a>
+                <a href="{{ url_for('main.context_encoding') }}" class="nav-item">Context (Q2)</a>
+                <a href="{{ url_for('main.feedback') }}" class="nav-item">Feedback (Q3)</a>
+                <a href="{{ url_for('main.js_welcome') }}" class="nav-item">JS (Q5)</a>
+                <a href="{{ url_for('main.search_url') }}" class="nav-item">URL (Q6)</a>
+                <a href="{{ url_for('main.sql_auth') }}" class="nav-item">SQL (Q7)</a>
+                <a href="{{ url_for('main.xml_parser') }}" class="nav-item">XML (Q8)</a>
+                <a href="{{ url_for('main.ldap_filter') }}" class="nav-item">LDAP (Q9)</a>
+                <a href="{{ url_for('main.cmd_exec') }}" class="nav-item">OS Cmd (Q10)</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="student-strip">
+        <div class="strip-container">
+            <span>Author: <strong>Sonali Gupta</strong> &middot; UID: <strong>CU23BCA0060A</strong></span>
+            <span>Course: <strong>Secure Coding Practices</strong> &middot; Institution: <strong>Chanakya University</strong></span>
+        </div>
+    </div>
+
+    <main class="content-container">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer">
+        <p>Secure Output Encoding & Input Sanitization Laboratory &middot; OWASP ASVS Standards &middot; Python & Flask</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card">
+    <h2>Q5: JavaScript Encoding via JSON Serialization</h2>
+    <p class="subtitle">Safely embedding user inputs into client-side JavaScript using <code>json.dumps()</code> to prevent quotation breakout and script tag injection.</p>
+
+    <form method="POST" class="mt-4">
+        <div class="form-group">
+            <label>Username Input (Test payloads with quotes, backslashes, &lt;/script&gt;):</label>
+            <input type="text" name="username" class="form-input mono" value="{{ result.raw_username }}">
+        </div>
+        <button type="submit" class="btn btn-primary">Serialize & Verify Script</button>
+    </form>
+
+    <div class="results-box mt-4">
+        <h3>Generated JavaScript Construction</h3>
+        <div class="comp-box">
+            <span class="label">Safe JSON-Serialized String:</span>
+            <code class="code-block text-success">{{ result.safe_json }}</code>
+        </div>
+        <div class="comp-box mt-2">
+            <span class="label">Injected Script Block:</span>
+            <pre><code>{{ result.script_snippet }}</code></pre>
+        </div>
+
+        <div class="status-box pass mt-3">
+            <strong>✅ Security Guarantee:</strong>
+            <p id="welcomeGreeting">Evaluating JavaScript welcome message...</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Execution of the safely serialized username in real DOM
+    const safeUser = {{ result.safe_json|safe }};
+    document.getElementById('welcomeGreeting').textContent = "Welcome, " + safeUser + "!";
+</script>
+{% endblock %}

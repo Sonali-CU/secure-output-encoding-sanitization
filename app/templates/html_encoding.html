@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card">
+    <h2>Q1 & Q4: Standard HTML Entity Encoding (html.escape)</h2>
+    <p class="subtitle">Safely displaying special characters (<, >, &, ", ') and script injection payloads without browser execution.</p>
+
+    <form method="POST" class="mt-4">
+        <div class="form-group">
+            <label for="payload">Test Payload Input:</label>
+            <input type="text" name="payload" id="payload" class="form-input mono" value="{{ result.input }}">
+        </div>
+        <button type="submit" class="btn btn-primary">Encode and Test Display</button>
+    </form>
+
+    <div class="results-box mt-4">
+        <h3>Output Encoding Verification</h3>
+        <div class="comparison-grid">
+            <div class="comp-box">
+                <span class="label">Raw Untrusted Input:</span>
+                <code class="code-block text-danger">{{ result.input }}</code>
+            </div>
+            <div class="comp-box">
+                <span class="label">Safely HTML-Encoded Output (html.escape):</span>
+                <code class="code-block text-success">{{ result.encoded }}</code>
+            </div>
+        </div>
+
+        <div class="status-box pass mt-3">
+            <strong>✅ Browser Rendering Verification:</strong>
+            <p>The browser renders the payload strictly as literal text: <code>{{ result.encoded }}</code></p>
+            <p class="small text-muted">Because special characters are converted to entities (&lt;script&gt;), the browser HTML parser treats the payload as text nodes rather than executable DOM elements.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

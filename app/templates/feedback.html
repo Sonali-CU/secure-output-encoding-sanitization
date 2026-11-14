@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card">
+    <h2>Q3: Untrusted Feedback Sanitization (Stored XSS Defense)</h2>
+    <p class="subtitle">Safely capturing user feedback and neutralizing injected script tags before displaying on the webpage.</p>
+
+    <form method="POST" class="mt-4">
+        <div class="form-group">
+            <label>Your Name:</label>
+            <input type="text" name="author" class="form-input" value="Sonali Gupta" required>
+        </div>
+        <div class="form-group">
+            <label>Feedback (Try submitting: &lt;script&gt;alert('XSS')&lt;/script&gt;):</label>
+            <textarea name="comment" class="form-input" rows="3" required>&lt;script&gt;alert('Attacker Injected Script')&lt;/script&gt; Clean feedback test</textarea>
+        </div>
+        <button type="submit" class="btn btn-primary mt-3">Submit Sanitized Feedback</button>
+    </form>
+
+    <div class="feedback-board mt-4">
+        <h3>Public Feedback Board (All Entries Output-Encoded)</h3>
+        <div class="feedback-list">
+            {% for item in feedback_items %}
+                <div class="feedback-card">
+                    <div class="feedback-meta">
+                        <strong>{{ item.author|safe }}</strong>
+                        <span class="badge badge-sec">Sanitized</span>
+                    </div>
+                    <div class="feedback-body">
+                        {{ item.content|safe }}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
