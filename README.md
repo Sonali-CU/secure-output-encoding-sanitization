@@ -8,7 +8,7 @@
 > **Project Author:** Sonali Gupta  
 > **Roll Number:** CU23BCA0060A  
 > **Institution:** Department of Computer Applications, Chanakya University  
-> **Course:** Secure Coding Practices  
+> **Course:** Secure Coding Practices (Assignment 3)  
 > **Project Scope:** Implementation and Automated Verification of Defense-in-Depth Output Encoding and Context-Specific Sanitization Controls
 
 ---
@@ -168,5 +168,5 @@ The implementation enforces the core recommendations of:
 - **Degree Program:** Bachelor of Computer Applications (BCA)
 - **Department:** Department of Computer Applications
 - **University:** Chanakya University
-- **Course:** Secure Coding Practices
+- **Course:** Secure Coding Practices (Assignment 3)
 - **Academic Year:** 2025–2026

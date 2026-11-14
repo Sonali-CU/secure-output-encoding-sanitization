@@ -9,8 +9,8 @@ from selenium.webdriver.edge.service import Service
 
 PROJECT_DIR = r"C:\Users\DELL\Downloads\secure-output-encoding-sanitization"
 SCREENSHOTS_DIR = os.path.join(PROJECT_DIR, "screenshots")
-OUTPUT_PDF_1 = r"C:\Users\DELL\Downloads\assignment2.pdf"
-OUTPUT_PDF_2 = os.path.join(PROJECT_DIR, "assignment2.pdf")
+OUTPUT_PDF_1 = r"C:\Users\DELL\Downloads\assignment3.pdf"
+OUTPUT_PDF_2 = os.path.join(PROJECT_DIR, "assignment3.pdf")
 CSV_PATH = os.path.join(PROJECT_DIR, "reports", "encoding_sanitization_report.csv")
 
 def get_base64_image(filename):
@@ -61,7 +61,7 @@ html_content = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Secure Output Encoding & Input Sanitization - Technical Report</title>
+<title>Secure Output Encoding & Input Sanitization - Assignment 3 Technical Report</title>
 <style>
     @page {{
         size: A4 portrait;
@@ -328,11 +328,11 @@ html_content = f"""<!DOCTYPE html>
     <div class="institution">Chanakya University</div>
     <div class="department">Department of Computer Applications · Faculty of Science and Technology</div>
     <div style="font-size: 13pt; font-weight: 700; color: #0f2744; margin-bottom: 6pt;">
-        Technical Report: Secure Output Encoding and Input Sanitization Framework
+        Assignment 3: Secure Output Encoding and Input Sanitization Framework
     </div>
     <div class="meta-grid">
         <div class="meta-item"><strong>Student Name:</strong> Sonali Gupta</div>
-        <div class="meta-item"><strong>Course:</strong> Secure Coding Practices (BCA)</div>
+        <div class="meta-item"><strong>Course:</strong> Secure Coding Practices (Assignment 3)</div>
         <div class="meta-item"><strong>Roll Number:</strong> CU23BCA0060A</div>
         <div class="meta-item"><strong>Academic Session:</strong> 2025–2026</div>
         <div class="meta-item" style="grid-column: span 2;">
@@ -665,7 +665,7 @@ try:
         "printBackground": True,
         "preferCSSPageSize": True,
         "displayHeaderFooter": True,
-        "headerTemplate": '<div style="font-size: 8pt; font-family: Calibri, sans-serif; width: 100%; display: flex; justify-content: space-between; padding: 0 16mm; color: #64748b;"><span>Secure Output Encoding & Input Sanitization · Sonali Gupta (CU23BCA0060A)</span><span>Chanakya University</span></div>',
+        "headerTemplate": '<div style="font-size: 8pt; font-family: Calibri, sans-serif; width: 100%; display: flex; justify-content: space-between; padding: 0 16mm; color: #64748b;"><span>Assignment 3 · Secure Output Encoding & Input Sanitization · Sonali Gupta (CU23BCA0060A)</span><span>Chanakya University</span></div>',
         "footerTemplate": '<div style="font-size: 8pt; font-family: Calibri, sans-serif; width: 100%; display: flex; justify-content: space-between; padding: 0 16mm; color: #64748b;"><span>Department of Computer Applications</span><span>Page <span class="pageNumber"></span> of <span class="totalPages"></span></span></div>',
         "marginTop": 0.45,
         "marginBottom": 0.45,
