@@ -17,16 +17,18 @@ def get_base64_image(filename):
     path = os.path.join(SCREENSHOTS_DIR, filename)
     if os.path.exists(path):
         with open(path, "rb") as f:
-            return f"data:image/png;base64,{base64.b64encode(f.read()).decode('utf-8')}"
-    return ""
+            b64 = base64.b64encode(f.read()).decode('utf-8')
+            print(f"Loaded screenshot {filename} ({len(b64)} chars)")
+            return f"data:image/png;base64,{b64}"
+    raise FileNotFoundError(f"Missing screenshot: {path}")
 
 img_dashboard = get_base64_image("01_main_dashboard.png")
-img_html_enc = get_base64_image("02_html_entity_encoding_q01.png")
-img_context = get_base64_image("03_context_aware_encoding_q02.png")
-img_feedback = get_base64_image("04_untrusted_feedback_sanitization_q03.png")
-img_sql = get_base64_image("05_sql_parameterized_query_q07.png")
-img_xxe = get_base64_image("06_xxe_defense_defusedxml_q08.png")
-img_ldap = get_base64_image("07_ldap_filter_escaping_q09.png")
+img_html_enc = get_base64_image("02_html_encoding_q1_q4.png")
+img_context = get_base64_image("03_context_encoding_q2.png")
+img_feedback = get_base64_image("04_feedback_xss_defense_q3.png")
+img_sql = get_base64_image("05_sql_parameterization_q7.png")
+img_xxe = get_base64_image("06_xxe_defense_q8.png")
+img_ldap = get_base64_image("07_ldap_filter_escaping_q9.png")
 img_cmd = get_base64_image("08_os_command_injection_defense_q10.png")
 img_audit = get_base64_image("09_automated_audit_report_matrix.png")
 
@@ -326,7 +328,7 @@ html_content = f"""<!DOCTYPE html>
 <!-- Institutional Header -->
 <div class="header-box">
     <div class="institution">Chanakya University</div>
-    <div class="department">Department of Computer Applications · Faculty of Science and Technology</div>
+    <div class="department">Department of Computer Applications</div>
     <div style="font-size: 13pt; font-weight: 700; color: #0f2744; margin-bottom: 6pt;">
         Assignment 3: Secure Output Encoding and Input Sanitization Framework
     </div>
